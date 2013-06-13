@@ -39,6 +39,6 @@ if __name__ == '__main__':
     h = filt1()
     print len(h)
     leng = range(len(h))
-    plot(h)
+    plot(leng,h)
     show()
     
