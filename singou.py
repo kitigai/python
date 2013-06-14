@@ -26,14 +26,34 @@ def ift(X):
 
 def correl(x, y):
     N = len(x)
-    yd = y + y
     
 
+
+def convolution(x, y):
+    N = len(x)
+    yd = y + y
+    xd = x + x
+    r = [0.0] * N
+    for m in range(N):
+        for n in range(N):
+            r[m] += xd[n] * yd[n + m]
+
+
+    return r
+       
 def filt1():
     H = [1.0]*9 + [0.5] + [0.0]*44 + [0.5] + [1.0]*9
     h = ift(H)
-    return h
+    return h[0:32]
+def fir(h,x):
+    P = len(h) 
+    xd = [0.0] * len(x)
+    for n in range(len(x)):
+        for p in range(P):
+            if n - p >= 0:
+                xd[n] += h[p] * x[n - p]
 
+    return xd
 
 if __name__ == '__main__':
     h = filt1()
