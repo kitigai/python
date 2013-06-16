@@ -1,5 +1,5 @@
 #coding: utf-8
-import numpy as npa
+import numpy as np
 from pylab import *
 
 def dft(x):
@@ -25,9 +25,31 @@ def ift(X):
     return x
 
 def correl(x, y):
-    N = len(x)
-    
+	Nx = len(x)
+	Ny = len(y)
+	zx = 0.0
+	zy = 0.0
+	xh = 0.0
+	yh = 0.0
+	for i in range(Nx):
+		xh += x[i]
+	for k in range(Ny):
+		yh += y[k]
 
+	xh = xh/Nx
+	yh = yh/Ny
+	for j in range(Nx):
+		zx += (x[j] - xh)**2
+	for r in range(Ny):
+		zy += (y[r] - yh)**2
+    
+	zx = np.sqrt(zx/Nx)
+	zy = np.sqrt(zy/Ny)
+	r = convolution(x,y)
+	print zx,zy
+	r = r/(Nx * zx * zy)
+	return r
+	
 
 def convolution(x, y):
     N = len(x)

@@ -21,7 +21,7 @@ for i in fn:
 	xdata.append(float(match[1]))
 	ydata.append(float(match[2]))
 
-r1 = sg.convolution(ydata,xdata)
+r1 = sg.correl(ydata,xdata)
 
 X = sg.dft(xdata)
 Y = sg.dft(ydata)
@@ -29,7 +29,7 @@ h = sg.filt1()
 xd = sg.fir(h,xdata)
 yd = sg.fir(h,ydata)
 Xd = sg.dft(xd)
-r2 = sg.convolution(yd,xd)
+r2 = sg.correl(yd,xd)
 subplot(321)
 plot(r1[0:64])
 subplot(322)
