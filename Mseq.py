@@ -1,6 +1,6 @@
 #coding:utf-8
 # 定数
-P = 4
+P = 6
 Q = 1
 MASK = 2 ** P - 1
 

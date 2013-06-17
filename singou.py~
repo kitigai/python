@@ -58,13 +58,11 @@ def convolution(x, y):
     yd = y + y 
     xd = x + x
     r = [0.0] * Ny
-    try:
-        for m in range(Ny):
-            for n in range(N):
+    for m in range(Ny-N):
+        for n in range(N):
 
-                r[m] += x[n] * yd[n + m]
-    except:
-        print "error",m,n
+            r[m] += xd[n] * yd[n + m]
+
 
     return r
        
