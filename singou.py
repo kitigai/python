@@ -55,11 +55,11 @@ def convolution(x, y):
     N = len(x)
     Ny = len(y)
     print N,Ny
-    yd = y + y 
-    xd = x + x
-    r = [0.0] * Ny
+    yd = [0.0]*N + y + [0.0]*N
+    print len(yd)
+    r = [0.0] * Ny*2
     try:
-        for m in range(Ny):
+        for m in range(Ny*2):
             for n in range(N):
 
                 r[m] += x[n] * yd[n + m]
