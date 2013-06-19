@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-
+#kadai6
 
 from pylab import *
 import sys
