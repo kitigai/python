@@ -8,7 +8,8 @@ import numpy as np
 import wave
 import re
 import scipy.fftpack
-
+from singou import *
+"""
 def dft(x):
 	N = len(x)
 	X = [0.0] * N
@@ -31,7 +32,7 @@ def rft(X):
 
 	return x
 
-
+"""
 argvs = sys.argv
 if ( len(argvs) != 2):
 	print 'miss'
@@ -83,7 +84,7 @@ for k in range(WinWidth):
 	H.append(Wxz/Wxx)	
 
 
-h = rft(H)
+h = ift(H)
 imag = [ d.imag for d in h]
 real = [ d.real for d in h]
 Ximag = [ d.imag for d in X[1]]
