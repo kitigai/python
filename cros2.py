@@ -46,6 +46,7 @@ X = []
 Z = []
 
 H = []
+WxzH = []
 
 start = 0
 
@@ -57,7 +58,6 @@ for i in fn:
 	xdata.append(float(match[1]))
 	zdata.append(float(match[2]))
 
-	print match[1],match[2]
 N = len(xdata)
 M = N / WinWidth
 for j in range(M):
@@ -75,28 +75,24 @@ for j in range(M):
 
 for k in range(WinWidth):
 	Wxz = 0.0
-	Wxx = 0.0
+	#Wxx = 0.0
 	for r in range(M):
 		xz = X[r][k].conjugate()*Z[r][k]
-		xx = X[r][k].conjugate()*X[r][k]
-		Wxz += xz
-		Wxx += xx
-	H.append(Wxz/Wxx)	
+		#xx = X[r][k].conjugate()*X[r][k]
+		Wxz += xz/N
+		#Wxx += xx/N
+	WxzH.append(Wxz)	
 
-
-h = ift(H)
-imag = [ d.imag for d in h]
-real = [ d.real for d in h]
-Ximag = [ d.imag for d in X[1]]
-Xreal = [ d.real for d in X[1]]
-
-length = range(WinWidth)
-leng = range(len(xdata))
-plot( length,real,label ='real')
-plot( length,imag,label ='imag')
-#plot( sinlength,sindata)
-xlabel("sample")
-ylabel("h(sample)")
-legend()
+theta = [np.arctan2(int(c.imag),int(c.real)) for c in WxzH]
+NN = len(theta)
+tah = []
+for r in range(NN -1):
+    alp = (theta[r+1] - theta[r])
+    tah.append( alp * N/2*np.pi)
+#h = ift(H)
+subplot(211)
+plot(theta)
+subplot(212)
+plot(tah)
 show()
 
