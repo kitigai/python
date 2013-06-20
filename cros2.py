@@ -84,6 +84,8 @@ for k in range(WinWidth):
 	WxzH.append(Wxz)	
 
 theta = [np.arctan2(int(c.imag),int(c.real)) for c in WxzH]
+print theta[13],theta[0]
+print(((theta[13]-theta[0])*len(theta))/(13*2*np.pi))
 NN = len(theta)
 tah = []
 for r in range(NN -1):
