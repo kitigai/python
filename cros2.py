@@ -1,25 +1,10 @@
 #coding:utf-8
-
-from pylab import *
-import sys
-import re
-
-argvs = sys.argv
-if(len(argvs) != 2):
-	print "miss"
-	quit()
-
-title = argvs[1]
-#-*- coding: utf-8 -*-
-
-
 from pylab import *
 import sys
 import math
 import numpy as np
 import wave
 import re
-import scipy.fftpack
 from singou import *
 """
 def dft(x):
@@ -61,26 +46,12 @@ H = []
 WxzH = []
 
 start = 0
->>>>>>> 5a0161031e62d6094b889bc00e3de32a6d5342ee
 
 f = open(title,'r')
 fn = f.readlines()
 
-<<<<<<< HEAD
-xdata = []
-zdata = []
-
-for i in fn:
-	match = re.findall(r'[0-9.-]+',i)
-	xdata.append(double(match[1]))
-	zdata.append(double(match[2]))
-subplot(211)
-plot(xdata)
-subplot(212)
-plot(zdata)
 
 show()
-=======
 for i in fn:
 	match = re.findall(r'[0-9.-]+',i)
 	xdata.append(float(match[1]))
