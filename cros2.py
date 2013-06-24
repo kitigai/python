@@ -91,6 +91,9 @@ for r in range(NN -1):
     alp = (theta[r+1] - theta[r])
     tah.append( alp * N/2*np.pi)
 #h = ift(H)
+subplot(211)
 plot(theta)
+subplot(212)
+plot(WxzH)
 show()
 
