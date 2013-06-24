@@ -60,8 +60,8 @@ for i in fn:
 N = len(xdata)
 M = N / WinWidth
 for j in range(M):
-	x = xdata[start:WinWidth+start]
-	z = zdata[start:WinWidth+start]
+	z = xdata[start:WinWidth+start]
+	x = zdata[start:WinWidth+start]
 	X.append(dft(x))
 	Z.append(dft(z))
 	#x = xdata[start:WinWidth+start]
@@ -91,9 +91,6 @@ for r in range(NN -1):
     alp = (theta[r+1] - theta[r])
     tah.append( alp * N/2*np.pi)
 #h = ift(H)
-subplot(211)
 plot(theta)
-subplot(212)
-plot(WxzH)
 show()
 

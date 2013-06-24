@@ -31,16 +31,18 @@ xd = sg.fir(h,xdata)
 yd = sg.fir(h,ydata)
 Xd = sg.dft(xd)
 r2 = sg.correl(xd,yd)
-subplot(311)
+#subplot(311)
 
 plot(range(-1023,len(r1)/2 +1),r1)
 plt.xlim([-1023,1024])
 #xticks(numpy.linspace(0,2500,6),numpy.linspace(-1024,2500-1048,6))
+"""
 subplot(312)
 plot(range(-1023,len(r2)/2 +1),r2)
 plt.xlim([-1023,1024])
 subplot(313)
 plot(h)
+"""
 #title(r"test",fontsize = 25,fontname="serif")
 show()
 
