@@ -55,14 +55,16 @@ def convolution(x, y):
     N = len(x)
     Ny = len(y)
     print N,Ny
-    yd = y + y 
-    xd = x + x
-    r = [0.0] * Ny
-    for m in range(Ny-N):
-        for n in range(N):
+    yd = [0.0]*N + y + [0.0]*N
+    print len(yd)
+    r = [0.0] * Ny*2
+    try:
+        for m in range(Ny*2):
+            for n in range(N):
 
-            r[m] += xd[n] * yd[n + m]
-
+                r[m] += x[n] * yd[n + m]
+    except:
+        print "error",m,n
 
     return r
        
@@ -70,6 +72,21 @@ def filt1():
     H = [1.0]*9 + [0.5] + [0.0]*44 + [0.5] + [1.0]*9
     h = ift(H)
     return h[0:32]
+def filt2():
+    H = [1.0]*8 +[0.5] + [0.0]*46+[0.5]  + [1.0]*8
+    h = ift(H)
+    return h
+
+def fir2(x, b):
+    """FIRフィルタをかける、x:入力信号、b:フィルタ係数"""
+    y = [0.0] * len(x)  # フィルタの出力信号
+    N = len(b) - 1      # フィルタ係数の数
+    for n in range(len(x)):
+        for i in range(N+1):
+            if n - i >= 0:
+                y[n] += b[i] * x[n - i]
+    return y
+
 def fir(h,x):
     P = len(h) 
     xd = [0.0] * len(x)

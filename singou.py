@@ -72,6 +72,21 @@ def filt1():
     H = [1.0]*9 + [0.5] + [0.0]*44 + [0.5] + [1.0]*9
     h = ift(H)
     return h[0:32]
+def filt2():
+    H = [1.0]*8 +[0.5] + [0.0]*46+[0.5]  + [1.0]*8
+    h = ift(H)
+    return h[0:32]
+
+def fir2(x, b):
+    """FIRフィルタをかける、x:入力信号、b:フィルタ係数"""
+    y = [0.0] * len(x)  # フィルタの出力信号
+    N = len(b) - 1      # フィルタ係数の数
+    for n in range(len(x)):
+        for i in range(N+1):
+            if n - i >= 0:
+                y[n] += b[i] * x[n - i]
+    return y
+
 def fir(h,x):
     P = len(h) 
     xd = [0.0] * len(x)
