@@ -107,7 +107,10 @@ def Nomalizer(filenameAlp,filenameBet,savefile):
     xc.close()
 
 if __name__ == '__main__':
-    '''filenameAlp のパワーに filenameBet のパワーを合わせsavefileへ1ch waveとしてセーブ　filenameAlpのパワーの方が小さい事が確認されていなければならない'''
+    '''filenameAlp のパワーに filenameBet のパワーを合わせ
+	savefileへ1ch waveとしてセーブ　filenameAlpの
+	パワーの方が小さい事が確認されていなければならない
+	'''
     argvs = sys.argv
     if (len(argvs) != 4):
         print 'failed'
