@@ -8,8 +8,8 @@ import struct
 from pylab import *
 
 samplelen = 64
-N = 512
-SHIFT = 128
+N = 1024
+SHIFT =512 
 
 
 if __name__ == '__main__':
@@ -33,13 +33,13 @@ if __name__ == '__main__':
 	fs = xa.getframerate()
 	lengthA = xa.getnframes()
 	bufferA = xa.readframes(lengthA)
-	play(bufferA,44100,16)
 	#print bufferA
 	dataA = np.frombuffer(bufferA,dtype="int16")/32768.0
 
 	lengthB = xb.getnframes()
 	bufferB = xb.readframes(lengthB)
 	dataB = np.frombuffer(bufferB,dtype="int16")/32768.0
+	play(bufferB,44100,16)
 	print len(dataA)
 	if len(dataA) < len(dataB):
 		j = np.zeros(len(dataB)-len(dataA))
@@ -61,22 +61,23 @@ if __name__ == '__main__':
 		freqA = np.fft.fft(windowedDataA)
 		freqB = np.fft.fft(windowedDataB)
 
-		freqC = freqA*freqB
+		freqC = freqA+freqB
 		dat = np.fft.ifft(freqC)
-		dataC = np.append(dataC,dat[:128])
+		dataC = np.append(dataC,dat[:SHIFT])
 		start += SHIFT
 
-	dataC /=10	
-	#dataC *= 3276.7
+	#dataC /=10	
+	dataC = np.array([x.real for x in dataC])
+	dataC *= 32767.0
 
-	#bit = struct.pack("h"*len(dataC), *dataC)
-	#play(bit,44100.0,16)
+	bit = struct.pack("h"*len(dataC), *dataC)
+	play(bit,44100.0,16)
 	subplot(311)		
 	plot(dataC)
 	subplot(312)
 	plot(dataA)
 	subplot(313)
-	plot(dataB)
+	plot(bufferB)
 	show()
 
 	
